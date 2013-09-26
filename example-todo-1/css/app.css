@@ -1,0 +1,15 @@
+*{
+	font-family: Verdana;
+}
+
+body {
+	color:darkBlue;
+}
+ul li{
+	list-style: square;
+}
+input {
+	box-shadow: 1px solid black;
+	border: 1px solid blue;
+
+}

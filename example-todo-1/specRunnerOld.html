@@ -1,0 +1,119 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+  "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+  <title>Jasmine Spec Runner</title>
+
+  <link rel="shortcut icon" type="image/png" href="lib/jasmine-1.3.1/jasmine_favicon.png">
+  <link rel="shortcut icon" type="image/png" href="lib/jasmine-1.3.1/jasmine_favicon.png">
+
+  <link rel="stylesheet" type="text/css" href="lib/jasmine-1.3.1/jasmine.css">
+  
+
+  
+  <script type="text/javascript" src="lib/jasmine-1.3.1/jasmine.js"></script>
+  <script type="text/javascript" src="lib/jasmine-1.3.1/jasmine-html.js"></script>
+  <script type="text/javascript" src="../../lib/angular-1.0.8/angular.js"></script>
+  <script type="text/javascript" src="../../lib/angular-1.0.8/angular-mocks.js"></script>
+  <!-- include source files here... -->
+  <script type="text/javascript" src="../../welcomeCtrl.js"></script>
+
+  <script type="text/javascript">
+    describe("testing welcomeCtrl controller", function() {
+    var ctrl,
+    scope;
+    // depServiceMock = {},
+    // depMethodSpy = jasmine.createSpy("");
+
+
+
+    // load the controller's module
+    beforeEach(module('myApp'));
+
+    // beforeEach(module( function($provide){
+    //   $provide.value("depService", depServiceMock);
+    // }) );
+
+
+    // Initialize the controller and a mock scope
+    beforeEach(inject(function($controller, $rootScope) {
+        scope = $rootScope.$new();
+        ctrl = $controller('WelcomeCtrl', {
+        $scope: scope
+      }); 
+    })); 
+
+    it('should ', function() {
+      expect(scope.name).toBe('papa');
+        
+      });
+
+    it('should have length of 2', function() {
+      expect(scope.personas.length).toEqual(2);
+        
+      });
+    describe('when add a people',function(){
+      describe('nuevoNombrePersona is not setted',function(){
+         it('should not push a new item', function() {
+          var length = scope.personas.length;
+          scope.addPersona();
+          expect(scope.personas.length).toEqual(length);                    
+        });
+      });
+      
+    it('should push a new item on personas array', function() {
+      var length = scope.personas.length;          
+      scope.nuevoNombrePersona = 'nueva PErsona';
+      scope.addPersona();
+      expect(scope.personas.length).toEqual(length+1);
+
+      });
+    });
+    describe('when delete a person',function(){
+      var length = scope.personas.length;          
+      scope.deletePersona();
+      expect(scope.personas.length).toEqual(length-1);
+
+      });
+    });
+
+
+   
+});
+
+  </script>
+ 
+  <script type="text/javascript">
+    (function() {
+      var jasmineEnv = jasmine.getEnv();
+      jasmineEnv.updateInterval = 1000;
+
+      var htmlReporter = new jasmine.HtmlReporter();
+
+      jasmineEnv.addReporter(htmlReporter);
+
+      jasmineEnv.specFilter = function(spec) {
+        return htmlReporter.specFilter(spec);
+      };
+
+      var currentWindowOnload = window.onload;
+
+      window.onload = function() {
+        if (currentWindowOnload) {
+          currentWindowOnload();
+        }
+        execJasmine();
+      };
+
+      function execJasmine() {
+        jasmineEnv.execute();
+      }
+
+    })();
+  </script>
+
+</head>
+
+<body>
+</body>
+</html>

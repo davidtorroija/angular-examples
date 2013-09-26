@@ -1,0 +1,111 @@
+<html>
+<head>
+  <title>Vamos a correr los tests!</title>
+  <link rel="stylesheet" type="text/css" href="css/jasmine.css">
+ <script type="text/javascript" src="js/lib/jasmine.js"></script>
+  <script type="text/javascript" src="js/lib/jasmine-html.js"></script>
+  <script type="text/javascript" src="js/lib/angular.min.js"></script>
+  <script type="text/javascript" src="js/lib/angular-mocks.js"></script>
+  <script type="text/javascript" src="js/app/app.js">
+  
+  </script>
+  <script type="text/javascript" src="js/app/todo-ctrl.js"></script>
+
+  <script type="text/javascript">
+    describe("Test todoCtrl", function() {
+        var ctrl,
+        scope;
+        // depServiceMock = {},
+        // depMethodSpy = jasmine.createSpy("");
+    
+        // load the controller's module
+        beforeEach(module('todoApp'));
+    
+        // beforeEach(module( function($provide){
+        //   $provide.value("depService", depServiceMock);
+        // }) );
+    
+    
+        // Initialize the controller and a mock scope
+        beforeEach(inject(function($controller, $rootScope) {
+            scope = $rootScope.$new();
+            ctrl = $controller('todoCtrl', {
+            $scope: scope
+          }); 
+        })); 
+        
+        it('should have a var named todo and his value to be "add new todo"', function() {
+            expect(scope.newTodo).toBe('add new todo');
+            
+          });
+        it('should have a "todos" array with 2 items', function() {
+            expect(scope.todos.length).toBe(2);
+            
+          });
+        describe('when I push items to the todos array through a metod called "addTodo"!',function(){
+          describe('-if the newTodo value is empty',function(){
+              it('should not push anything',function(){
+                var length = scope.todos.length;
+                scope.newTodo = '';
+                scope.addTodo();
+                expect(scope.todos.length).toBe(length);
+              });
+          });
+          describe('-if the newTodo value is valid',function(){              
+              describe('there is an item with the same description',function(){
+                   it('should not push anything',function(){
+                    var length;
+                    scope.newTodo = 'some valid value';
+                    scope.addTodo();
+                    length = scope.todos.length;
+                    scope.newTodo = 'some valid value';
+                    scope.addTodo();
+                    expect(scope.todos.length).toBe(length);
+                  });
+              });
+             
+            });
+
+              it('should push a new item on the todos array',function(){
+                var length = scope.todos.length;
+                scope.newTodo = 'some valid value';
+                scope.addTodo();
+                expect(scope.todos.length).toBe(length+1);
+              });
+          });
+    });    
+    
+  </script>
+  <script type="text/javascript">
+    (function() {
+      var jasmineEnv = jasmine.getEnv();
+      jasmineEnv.updateInterval = 1000;
+
+      var htmlReporter = new jasmine.HtmlReporter();
+
+      jasmineEnv.addReporter(htmlReporter);
+
+      jasmineEnv.specFilter = function(spec) {
+        return htmlReporter.specFilter(spec);
+      };
+
+      var currentWindowOnload = window.onload;
+
+      window.onload = function() {
+        if (currentWindowOnload) {
+          currentWindowOnload();
+        }
+        execJasmine();
+      };
+
+      function execJasmine() {
+        jasmineEnv.execute();
+      }
+
+    })();
+  </script>
+</head>
+<body>
+
+</body>
+</html>

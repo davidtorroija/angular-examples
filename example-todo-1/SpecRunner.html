@@ -54,13 +54,11 @@
           describe('-if the newTodo value is valid',function(){              
               describe('there is an item with the same description',function(){
                    it('should not push anything',function(){
-                    var length;
                     scope.newTodo = 'some valid value';
                     scope.addTodo();
-                    length = scope.todos.length;
                     scope.newTodo = 'some valid value';
                     scope.addTodo();
-                    expect(scope.todos.length).toBe(length);
+                    expect(scope.todos.length).toBe(3);
                   });
               });
              

@@ -3,9 +3,7 @@ angular.module('todoApp')
 .controller('todoCtrl',function($scope){
 	
 	$scope.newTodo = 'add new todo';
-	$scope.todos = [
-		{description:'Comprar unos chifles en el iniaquito'},
-		{description:'Jugar a las escondidas con la man que tanto me gusta y es la hermana de mi jefe'}
+	$scope.todos = [		
 		];
 	$scope.addTodo = function(){
 		
@@ -27,14 +25,14 @@ angular.module('todoApp')
       return false;						
     }
 
-    var is_valid = true;
+    var isValid = true;
 
     //con underscore es mas facil pero agregariamos complejidad
-    angular.forEach($scope.todos, function(todo, key){
+    angular.forEach($scope.todos, function(todo){
       if(todo.description === $scope.newTodo){
-        is_valid = false;
+        isValid = false;
       }
     });
-    return is_valid;
+    return isValid;
   }
 });

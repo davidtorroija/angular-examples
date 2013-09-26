@@ -1,9 +1,10 @@
-describe("Test todoCtrl", 
-  function() {
+describe("todo controller test", function() {
     var ctrl,
     scope;
     // depServiceMock = {},
     // depMethodSpy = jasmine.createSpy("");
+
+
 
     // load the controller's module
     beforeEach(module('todoApp'));
@@ -14,45 +15,24 @@ describe("Test todoCtrl",
 
 
     // Initialize the controller and a mock scope
-    beforeEach(inject(function($controller, $rootScope) {
-        scope = $rootScope.$new();
+    beforeEach(inject(function($controller) {
+        scope = {};
         ctrl = $controller('todoCtrl', {
         $scope: scope
       }); 
     })); 
-    
-    it('should have a var named todo and his value to be "add new todo"', function() {
-        expect(scope.newTodo).toBe('add new todo');
-        
-      });
-   
-    describe('when I push items to the todos array through a metod called "addTodo"!',function(){
-      describe('-if the newTodo value is empty',function(){
-          it('should not push anything',function(){
-            //var length = scope.todos.length;
-            scope.newTodo = '';
-            scope.addTodo();
-            expect(scope.todos.length).toBe(0);
-          });
-      });
-      describe('-if the newTodo value is valid',function(){              
-          describe('there is an item with the same description',function(){
-               it('should not push anything',function(){
-                scope.newTodo = 'some valid value';
-                scope.addTodo();
-                scope.newTodo = 'some valid value';
-                scope.addTodo();
-                expect(scope.todos.length).toBe(1);
-              });
-          });
-         
-        });
 
-          it('should push a new item on the todos array',function(){
-            var length = scope.todos.length;
-            scope.newTodo = 'some valid value';
-            scope.addTodo();
-            expect(scope.todos.length).toBe(1);
-          });
-      });
-});   
+    it('should have newTodo variable', function() {
+        expect(scope.newTodo).toBe('add new todo');
+    });
+
+    it('should have an array with todos', function() {
+        expect(scope.todos).toEqual([]);
+    });
+    it('should add a new todo to todos array', function() {
+        scope.addTodo();
+        expect(scope.todos.length).toEqual(1);
+        expect(scope.todos[0]).toEqual(scope.newTodo);
+    });
+});
+

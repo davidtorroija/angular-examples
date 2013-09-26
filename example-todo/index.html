@@ -1,6 +1,19 @@
-
-
-
+<html ng-app="todoApp">
+<head>
+	<title>todo list</title>
+</head>
+<body>
+	<div ng-controller="todoCtrl">
+		<ul>
+			<li ng-repeat="todo in todos">
+				{{todo}}
+			</li>
+		</ul>
+		<input ng-model="newTodo"><button ng-click="addTodo()">add Todo!</button>
+	</div>
+	<div></div>
+</body>
+</html>
 <script type="text/javascript" src="js/lib/angular.min.js"></script>
 <script type="text/javascript" src="js/app/app.js"></script>
 <script type="text/javascript" src="js/app/todo-ctrl.js"></script>
